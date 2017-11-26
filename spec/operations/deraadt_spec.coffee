@@ -1,11 +1,11 @@
-operation = require '../../lib/operations/king'
+operation = require '../../lib/operations/deraadt'
 
-describe "/king", ->
+describe "/deraadt", ->
   it "should have the correct name", ->
-    expect(operation.name).toEqual('King')
+    expect(operation.name).toEqual("{name} you are being the usual slimy hypocritical asshole... You may have had value ten years ago, but people will see that you don't anymore.")
 
   it "should have the correct url", ->
-    expect(operation.url).toEqual('/king/:name/:from')
+    expect(operation.url).toEqual('/deraadt/:name/:from')
 
   it "should have the correct fields", ->
     expect(operation.fields).toEqual([
@@ -21,7 +21,7 @@ describe "/king", ->
       operation.register(app,null)
 
       expect(app.get).toHaveBeenCalled()
-      expect(app.get.argsForCall[0][0]).toEqual('/king/:name/:from')
+      expect(app.get.argsForCall[0][0]).toEqual('/deraadt/:name/:from')
 
     it 'should call output with correct params', ->
       func = null
@@ -30,12 +30,12 @@ describe "/king", ->
       output = jasmine.createSpy()
       operation.register(app, output)
 
-      req = 
+      req =
         params:
           name: "TESTNAME"
           from: "TESTFROM"
 
-      message = "Oh fuck off, just really fuck off you total dickface. Christ, #{req.params.name}, you are fucking thick."
+      message = "#{req.params.name} you are being the usual slimy hypocritical asshole... You may have had value ten years ago, but people will see that you don't anymore."
       subtitle = "- #{req.params.from}"
 
       func(req,'RES')

@@ -1,13 +1,13 @@
 module.exports =
-  name: "King"
-  url: '/king/:name/:from'
+  name: "Cocksplat"
+  url: '/cocksplat/:name/:from'
   fields: [
     { name: 'Name', field: 'name'}
     { name: 'From', field: 'from'}
   ]
 
   register: (app, output) ->
-    app.get '/king/:name/:from', (req, res) ->
-      message = "Oh fuck off, just really fuck off you total dickface. Christ, #{req.params.name}, you are fucking thick."
+    app.get '/cocksplat/:name/:from', (req, res) ->
+      message = "Fuck off #{req.params.name}, you worthless cocksplat"
       subtitle = "- #{req.params.from}"
       output(req, res, message, subtitle)

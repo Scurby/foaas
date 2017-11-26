@@ -1,15 +1,14 @@
-operation = require '../../lib/operations/king'
+operation = require '../../lib/operations/fyyff'
 
-describe "/king", ->
+describe "/fyyff", ->
   it "should have the correct name", ->
-    expect(operation.name).toEqual('King')
+    expect(operation.name).toEqual('FYYFF')
 
   it "should have the correct url", ->
-    expect(operation.url).toEqual('/king/:name/:from')
+    expect(operation.url).toEqual('/fyyff/:from')
 
   it "should have the correct fields", ->
     expect(operation.fields).toEqual([
-      { name: 'Name', field: 'name'}
       { name: 'From', field: 'from'}
     ])
 
@@ -21,7 +20,7 @@ describe "/king", ->
       operation.register(app,null)
 
       expect(app.get).toHaveBeenCalled()
-      expect(app.get.argsForCall[0][0]).toEqual('/king/:name/:from')
+      expect(app.get.argsForCall[0][0]).toEqual('/fyyff/:from')
 
     it 'should call output with correct params', ->
       func = null
@@ -32,10 +31,9 @@ describe "/king", ->
 
       req = 
         params:
-          name: "TESTNAME"
           from: "TESTFROM"
 
-      message = "Oh fuck off, just really fuck off you total dickface. Christ, #{req.params.name}, you are fucking thick."
+      message = "Fuck you, you fucking fuck."
       subtitle = "- #{req.params.from}"
 
       func(req,'RES')

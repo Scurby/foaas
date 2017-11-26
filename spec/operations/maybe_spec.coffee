@@ -1,15 +1,14 @@
-operation = require '../../lib/operations/king'
+operation = require '../../lib/operations/maybe'
 
-describe "/king", ->
+describe "/maybe", ->
   it "should have the correct name", ->
-    expect(operation.name).toEqual('King')
+    expect(operation.name).toEqual('Maybe')
 
   it "should have the correct url", ->
-    expect(operation.url).toEqual('/king/:name/:from')
+    expect(operation.url).toEqual('/maybe/:from')
 
   it "should have the correct fields", ->
     expect(operation.fields).toEqual([
-      { name: 'Name', field: 'name'}
       { name: 'From', field: 'from'}
     ])
 
@@ -21,7 +20,7 @@ describe "/king", ->
       operation.register(app,null)
 
       expect(app.get).toHaveBeenCalled()
-      expect(app.get.argsForCall[0][0]).toEqual('/king/:name/:from')
+      expect(app.get.argsForCall[0][0]).toEqual('/maybe/:from')
 
     it 'should call output with correct params', ->
       func = null
@@ -30,12 +29,11 @@ describe "/king", ->
       output = jasmine.createSpy()
       operation.register(app, output)
 
-      req = 
+      req =
         params:
-          name: "TESTNAME"
           from: "TESTFROM"
 
-      message = "Oh fuck off, just really fuck off you total dickface. Christ, #{req.params.name}, you are fucking thick."
+      message = "Maybe. Maybe not. Maybe fuck yourself."
       subtitle = "- #{req.params.from}"
 
       func(req,'RES')
